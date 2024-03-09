@@ -1,7 +1,6 @@
 import sys
 import keyword
 
-#opcode={}
 opcode={
     "add":"0110011",
     "sub":"0110011",
