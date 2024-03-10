@@ -68,13 +68,30 @@ def comment_empty(inst):
     if inst.strip() == "" or inst.strip()[0] == "#":
         return True
     return False
+    
 def empty(inst):
     if not inst.strip():
         return True
     return False
+    
 def decimal_to_binary_12(decimal):
     binary_str = bin(int(decimal))[2:]
     return binary_str.zfill(12)
+    
+def hlt_last(data):
+    length=len(data)-1
+    if data[length][-1]=="0x00000000":
+        return True
+    else:
+        print("ERROR: at inst no.",length+1, "halt instruction missing from last of program")
+        sys.exit()
+
+def hlt_only_in_last(data):
+    for i in range(len(data)-1):
+        if data[i][0]=="beq":
+            print("ERROR:  at inst no. ",i+1, " can't execute after hlt, hlt instruction present in a inst other than the last one")
+            sys.exit()
+    return True  
 
 
 
