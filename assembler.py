@@ -131,6 +131,25 @@ def is_valid_syntax(data):
 
 
 
+        elif instruction=="breq" :
+            continue         
+        elif instruction[-1]==":":
+            continue
+        else:
+            print("Syntax ERROR:  at inst no. ",i+1, "Invalid instruction! ",words[0],"is not an instruction")
+            sys.exit()
+    return True
+
+
+
+
+
+
+
+
+
+
+
 
 
 
