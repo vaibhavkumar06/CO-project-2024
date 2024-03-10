@@ -68,7 +68,7 @@ def comment_empty(inst):
     if inst.strip() == "" or inst.strip()[0] == "#":
         return True
     return False
-def is_empty(inst):
+def empty(inst):
     if not inst.strip():
         return True
     return False
