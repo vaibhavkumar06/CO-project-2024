@@ -169,7 +169,18 @@ for i in data:
         
     #type I
     elif i[0]== "addi" or "sltiu" or "jalr" or "lw":
-    binary.append(opcode[i[0]][0] + Registers[i[1]] +opcode[i[0]][1] + Registers[i[2]] + decimal_to_binary_12(i[3]))
+        binary.append(decimal_to_binary_12(i[3])+Registers[i[2]]+"010"+Registers[i[1]]+opcode[i[0])
+
+    elif i[0]== "sltiu":
+        binary.append(decimal_to_binary_12(i[3])+Registers[i[2]]+"000"+Registers[i[1]]+opcode[i[0])
+
+    elif i[0]== "jalr":
+        binary.append(decimal_to_binary_12(i[3])+Registers[i[2]]+"011"+Registers[i[1]]+opcode[i[0])
+
+    elif i[0]== "lw":
+        binary.append(decimal_to_binary_12(i[3])+Registers[i[2]]+"000"+Registers[i[1]]+opcode[i[0])
+
+    
 
     #type S
     elif i[0]=="sw":
