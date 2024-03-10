@@ -92,7 +92,17 @@ def hlt_only_in_last(data):
             print("ERROR:  at inst no. ",i+1, " can't execute after hlt, hlt instruction present in a inst other than the last one")
             sys.exit()
     return True  
-
+    
+def valid(data):
+    for i in range(len(data)):
+        if data[i][0] in opcode.keys():
+            continue
+        elif data[i][0][-1]==":":
+            continue
+        else:
+            print("Syntax ERROR,at",i+1,"not a valid opcode/literal/label")
+            sys.exit()
+    return True
 
 
 
