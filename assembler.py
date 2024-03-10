@@ -124,3 +124,45 @@ for inst in sys.stdin:
     else:
         words = inst.split()
         data.append(words)
+binary=[]  
+for i in range(len(data)):
+    if data[i][0][-1]==":":
+        data[i].remove(data[i][0])   
+for i in data:
+   
+    ## R type instructions
+    if i[0]=="add":
+        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"000"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bin)
+    
+    elif i[0]=="sub":
+        bin="0100000"+Registers[i[3]]+Registers[i[2]]+"000"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bin)
+    
+    elif i[0]=="sll":
+        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"001"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bin)
+
+    elif i[0]=="slt":
+        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"010"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bin)
+
+    elif i[0]=="sltu":
+        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"011"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bin)
+        
+    elif i[0]=="xor":
+        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"100"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bin)
+
+    elif i[0]=="srl":
+        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"101"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bin)
+        
+    elif i[0]=="or":
+        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"110"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bin)
+
+    elif i[0]=="and":
+        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"111"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bin)
