@@ -104,6 +104,23 @@ def valid(data):
             sys.exit()
     return True
 
+def is_valid_syntax(data):
+    for i in range(len(data)):
+        if data[i][0][-1]==":":
+            words=data[i][1:]
+        else:
+            words=data[i]
+        instruction= words[0]
+        if instruction in ["add", "sub", "sll", "slt", "or", "and" , "srl" , "xor" , "sltu"]:
+            if len(words) == 4:
+                for word in words[1:]:
+                    if word not in Registers:
+                        print("Syntax ERROR:  at inst no. ", i+1, ""  + word+" is not a valid register name")
+                        sys.exit()
+            else:
+                print("Syntax ERROR: at inst no.",i+1, +   instruction + " supports three operands, " + str(len(words)-1) + " were given")
+                sys.exit()
+
 
 
 
