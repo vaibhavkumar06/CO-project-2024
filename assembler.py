@@ -185,6 +185,6 @@ for i in data:
     #type S
     elif i[0]=="sw":
     imm = decimal_to_binary_12 (i[2])
-    imm1 = imm[:4]
-    imm2 = imm[5:11]
-    binary.append(opcode[i[0]][0] + imm1 + opcode[i[0]][1] + Registers[i[3]] + Registers[i[1]] + imm2)
+    imm1 = imm[7:12]
+    imm2 = imm[0:7]
+    binary.append( imm2 + Registers[i[1]] + Registers[i[3]] + "010" + imm1 + opcode[i[0])
