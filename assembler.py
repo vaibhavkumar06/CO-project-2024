@@ -72,6 +72,9 @@ def empty(inst):
     if not inst.strip():
         return True
     return False
+def decimal_to_binary_12(decimal):
+    binary_str = bin(int(decimal))[2:]
+    return binary_str.zfill(12)
 
 
 
