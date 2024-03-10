@@ -118,7 +118,7 @@ data = []
 for inst in sys.stdin:
     inst = inst.rstrip()
     if inst == "":
-        break  # Exit the loop if an empty inst is entered
+        break  
     if comment_empty(inst):
         continue
     else:
