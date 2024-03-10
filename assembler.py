@@ -60,3 +60,67 @@ Registers={"zero":"00000",
            "t5":"11110",
            "t6":"11111"}
 
+
+
+
+
+def comment_empty(inst):
+    if inst.strip() == "" or inst.strip()[0] == "#":
+        return True
+    return False
+def is_empty(inst):
+    if not inst.strip():
+        return True
+    return False
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+data = []
+for inst in sys.stdin:
+    inst = inst.rstrip()
+    if inst == "":
+        break  # Exit the loop if an empty inst is entered
+    if comment_empty(inst):
+        continue
+    else:
+        words = inst.split()
+        data.append(words)
