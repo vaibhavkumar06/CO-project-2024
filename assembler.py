@@ -113,6 +113,7 @@ def valid(data):
     return True
 
 def is_valid_syntax(data):
+    #R type
     for i in range(len(data)):
         if data[i][0][-1]==":":
             words=data[i][1:]
@@ -128,6 +129,27 @@ def is_valid_syntax(data):
             else:
                 print("Syntax ERROR: at inst no.",i+1, +   instruction + " supports three operands, " + str(len(words)-1) + " were given")
                 sys.exit()
+
+        #I type
+        if instruction in ["lw", "addi", "sltiu", "jalr"]:
+            if len(words) == 4:
+                if words[1] not in Registers:
+                    print("Syntax ERROR:  at inst no. ", i+1, ""  + word[1]+" is not a valid register name")
+                    sys.exit()
+                if instruction == "addi" or "sltiu" or "jalr":
+                    if words[2] not in Registers:
+                        print("Syntax ERROR:  at inst no. ", i+1, ""  + word[2]+" is not a valid register name")
+                        sys.exit()
+                    if not words[3].isdigit():
+                        print("Syntax ERROR: at inst no. ", i+1, "" + word[2]+" is not a valid register name")
+                        sys.exit()     
+                if instruction == "lw":
+                    if not words[2].isdigit():
+                        print("Syntax ERROR: at inst no. ", i+1, "" + word[2]+" is not a valid register name")
+                        sys.exit()
+                    if word[3] not in Registers:
+                        print("Syntax ERROR:  at inst no. ", i+1, ""  + word[3]+" is not a valid register name")
+                        sys.exit()
 
 
 
