@@ -1,5 +1,6 @@
 import sys
 import keyword
+import re
 
 #opcode and register defining
 
@@ -259,33 +260,8 @@ for inst in sys.stdin:
     if comment_empty(inst):
         continue
     words = []
-    current_component = ""
-    in_parentheses = False
-    for char in inst:
-        if char == ' ':
-            if not in_parentheses:
-                if current_component:
-                    words.append(current_component)
-                    current_component = ""
-            else:
-                current_component += char
-        elif char == ',':
-            if not in_parentheses:
-                if current_component:
-                    words.append(current_component)
-                    current_component = ""
-            else:
-                current_component += char
-        elif char == '(':
-            in_parentheses = True
-            current_component += char
-        elif char == ')':
-            in_parentheses = False
-            current_component += char
-        else:
-            current_component += char
-    if current_component:
-        words.append(current_component)
+    pattern = r'([a-zA-Z0-9]+|\d+)'
+    words = re.findall(pattern, inst)
     data.append(words)
 
 
