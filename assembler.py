@@ -172,13 +172,14 @@ def is_valid_syntax(data):
 
 
 
-
-
-
-
-
-
-
+if hlt_only_in_last(data):
+    pass
+if hlt_last(data):
+    pass
+if valid(data):
+    pass
+if is_valid_syntax(data):
+    pass
 
 data = []
 for inst in sys.stdin:
