@@ -75,16 +75,26 @@ def empty(inst):
     return False
     
 def decimal_to_binary_12(decimal):
-    binary_str = bin(int(decimal))[2:]
-    return binary_str.zfill(12)
+    if decimal >= 0:
+        binary_str = bin(decimal)[2:].zfill(12)
+    else:
+        binary_str = bin(2**12 + decimal)[2:]
+    return binary_str[-12:]
 
 def decimal_to_binary_32(decimal):
-    binary_str = bin(int(decimal))[2:]
-    return binary_str.zfill(32)
+    if decimal >= 0:
+        binary_str = bin(decimal)[2:].zfill(32)
+    else:
+        binary_str = bin(2**32 + decimal)[2:]
+    return binary_str[-32:]
 
-def decimal_to_binary_201(decimal):
-    binary_str = bin(int(decimal))[2:]
-    return binary_str.zfill(20)
+def decimal_to_binary_20(decimal):
+    if decimal >= 0:
+        binary_str = bin(decimal)[2:].zfill(20)
+    else:
+        binary_str = bin(2**20 + decimal)[2:]
+    return binary_str[-20:]
+
     
 def hlt_last(data):
     length=len(data)-1
