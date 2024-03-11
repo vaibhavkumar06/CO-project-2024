@@ -326,3 +326,7 @@ for i in data:
     elif i[0]=="jal":
         bin=decimal_to_binary_20(i[2])[0]+decimal_to_binary_20(i[2])[10:20]+decimal_to_binary_21(i[2])[9]+decimal_to_binary_21(i[2])[1:9]+Registers[i[1]]+opcode[i[0]]
         binary.append(bin)
+
+
+for i in binary:
+    print(i)
