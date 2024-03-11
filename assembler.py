@@ -98,7 +98,7 @@ def decimal_to_binary_20(decimal):
     
 def hlt_last(data):
     length=len(data)-1
-    if data[length][-1]=="0x00000000":
+    if data[length][0]=="beq" and data[length][1]=="zero" and data[length][2]=="zero" and data[length][3]=="0":
         return True
     else:
         print("ERROR: at inst no.",length+1, "halt instruction missing from last of program")
@@ -106,7 +106,7 @@ def hlt_last(data):
 
 def hlt_only_in_last(data):
     for i in range(len(data)-1):
-        if data[i][3]=="0x00000000":
+        if data[i][0]=="beq" and data[i][1]=="zero" and data[i][2]=="zero" and data[i][3]=="0":
             print("ERROR:  at inst no. ",i+1, " can't execute after hlt, hlt instruction present in a inst other than the last one")
             sys.exit()
     return True  
@@ -233,7 +233,7 @@ def is_valid_syntax(data):
 
 
 
-        elif words[3]=="0x00000000" :
+        elif elif words[i][0]=="beq" and words[i][1]=="zero" and words[i][2]=="zero" and words[i][3]=="0": 
             continue         
         elif instruction[-1]==":":
             continue
