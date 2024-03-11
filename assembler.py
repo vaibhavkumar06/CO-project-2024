@@ -316,16 +316,16 @@ for i in data:
         
     #type I
     elif i[0]== "addi" or "sltiu" or "jalr" or "lw":
-        binary.append(decimal_to_binary_12(i[3])+Registers[i[2]]+"010"+Registers[i[1]]+opcode[i[0])
+        binary.append(decimal_to_binary_12(i[3])+Registers[i[2]]+"010"+Registers[i[1]]+opcode[i[0]])
 
     elif i[0]== "sltiu":
-        binary.append(decimal_to_binary_12(i[3])+Registers[i[2]]+"000"+Registers[i[1]]+opcode[i[0])
+        binary.append(decimal_to_binary_12(i[3])+Registers[i[2]]+"000"+Registers[i[1]]+opcode[i[0]])
 
     elif i[0]== "jalr":
-        binary.append(decimal_to_binary_12(i[3])+Registers[i[2]]+"011"+Registers[i[1]]+opcode[i[0])
+        binary.append(decimal_to_binary_12(i[3])+Registers[i[2]]+"011"+Registers[i[1]]+opcode[i[0]])
 
     elif i[0]== "lw":
-        binary.append(decimal_to_binary_12(i[3])+Registers[i[2]]+"000"+Registers[i[1]]+opcode[i[0])
+        binary.append(decimal_to_binary_12(i[3])+Registers[i[2]]+"000"+Registers[i[1]]+opcode[i[0]])
 
     
 
@@ -334,7 +334,7 @@ for i in data:
         imm = decimal_to_binary_12 (i[2])
         imm1 = imm[7:12]
         imm2 = imm[0:7]
-        binary.append( imm2 + Registers[i[1]] + Registers[i[3]] + "010" + imm1 + opcode[i[0])
+        binary.append( imm2 + Registers[i[1]] + Registers[i[3]] + "010" + imm1 + opcode[i[0]])
     #type B
     elif i[0]== "beq":
         rs1 = Registers[i[1]]
