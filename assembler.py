@@ -180,14 +180,7 @@ def is_valid_syntax(data):
 
 
 
-if hlt_only_in_last(data):
-    pass
-if hlt_last(data):
-    pass
-if valid(data):
-    pass
-if is_valid_syntax(data):
-    pass
+
 
 data = []
 for inst in sys.stdin:
@@ -201,6 +194,16 @@ for inst in sys.stdin:
         comma=words[1].split(",")
         words=[words[0]]+comma
         data.append(words)
+
+if hlt_only_in_last(data):
+    pass
+if hlt_last(data):
+    pass
+if valid(data):
+    pass
+if is_valid_syntax(data):
+    pass
+    
 binary=[]  
 for i in range(len(data)):
     if data[i][0][-1]==":":
