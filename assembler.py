@@ -131,7 +131,7 @@ def is_valid_syntax(data):
 
 
 
-        elif instruction=="breq" :
+        elif words[3]=="0x00000000" :
             continue         
         elif instruction[-1]==":":
             continue
