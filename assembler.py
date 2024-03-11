@@ -256,7 +256,7 @@ for i in data:
         imm1 = imm[7:12]
         imm2 = imm[0:7]
         binary.append( imm2 + Registers[i[1]] + Registers[i[3]] + "010" + imm1 + opcode[i[0])
-
+    #type B
     elif i[0]== "beq":
         rs1 = Registers[i[1]]
         rs2 = Registers[i[2]]
