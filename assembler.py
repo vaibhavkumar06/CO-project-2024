@@ -64,26 +64,29 @@ Registers={"zero":"00000",
 
 #conversions
 
-def decimal_to_binary_12(decimal):
+def decimal_to_binary_12(decimal_str):
+    decimal = int(decimal_str)
     if decimal >= 0:
         binary_str = bin(decimal)[2:].zfill(12)
     else:
         binary_str = bin(2**12 + decimal)[2:]
-    return binary_str[-12:]
+    return str(binary_str[-12:])
 
-def decimal_to_binary_32(decimal):
+def decimal_to_binary_32(decimal_str):
+    decimal = int(decimal_str)
     if decimal >= 0:
         binary_str = bin(decimal)[2:].zfill(32)
     else:
         binary_str = bin(2**32 + decimal)[2:]
-    return binary_str[-32:]
+    return str(binary_str[-32:])
 
-def decimal_to_binary_20(decimal):
+def decimal_to_binary_20(decimal_str):
+    decimal = int(decimal_str)
     if decimal >= 0:
         binary_str = bin(decimal)[2:].zfill(20)
     else:
         binary_str = bin(2**20 + decimal)[2:]
-    return binary_str[-20:]
+    return str(binary_str[-20:])
 
 #error checking
 
@@ -144,7 +147,7 @@ def is_valid_syntax(data):
             sys.exit()
 
         # R type 
-        if instruction in ["add", "sub", "sll", "slt", "or", "and", "srl", "xor", "sltu"]:
+        elif instruction in ["add", "sub", "sll", "slt", "or", "and", "srl", "xor", "sltu"]:
             if len(words) == 4:
                 for word in words[1:]:
                     if word not in Registers:
@@ -155,7 +158,7 @@ def is_valid_syntax(data):
                 sys.exit()
         
         # I type
-        if instruction in ["lw", "addi", "sltiu", "jalr"]:
+        elif instruction in ["lw", "addi", "sltiu", "jalr"]:
             if len(words) == 4:
                 if words[1] not in Registers:
                     print("Syntax ERROR: at inst no.", i+1, words[1] + " is not a valid register name")
@@ -179,7 +182,7 @@ def is_valid_syntax(data):
                 sys.exit()
         
         # S type
-        if instruction == "sw":
+        elif instruction == "sw":
             if len(words) == 4:
                 if words[1] not in Registers:
                     print("Syntax ERROR: at inst no.", i+1, words[1] + " is not a valid register name")
@@ -195,7 +198,7 @@ def is_valid_syntax(data):
                 sys.exit()
         
         # B type
-        if instruction in ["beq", "bne", "blt", "bge", "bltu", "bgeu"]:
+        elif instruction in ["beq", "bne", "blt", "bge", "bltu", "bgeu"]:
             if len(words) == 4:
                 if words[1] not in Registers:
                     print("Syntax ERROR: at inst no.", i+1, words[1] + " is not a valid register name")
@@ -211,7 +214,7 @@ def is_valid_syntax(data):
                 sys.exit()
         
         # U type
-        if instruction in ["lui", "auipc"]:
+        elif instruction in ["lui", "auipc"]:
             if len(words) == 3:
                 if words[1] not in Registers:
                     print("Syntax ERROR: at inst no.", i+1, words[1] + " is not a valid register name")
@@ -224,7 +227,7 @@ def is_valid_syntax(data):
                 sys.exit()
         
         # J type
-        if instruction == "jal":
+        elif instruction == "jal":
             if len(words) == 3:
                 if words[1] not in Registers:
                     print("Syntax ERROR: at inst no.", i+1, words[1] + " is not a valid register name")
@@ -240,9 +243,9 @@ def is_valid_syntax(data):
             continue         
         elif instruction[-1] == ":":
             continue
-        # else:
-        #     print("Syntax ERROR: at inst no.", i+1, "Invalid instruction! ", words[0], "is not an instruction")
-        #     sys.exit()
+        else:
+             print("Syntax ERROR: at inst no.", i+1, "Invalid instruction! ", words[0], "is not an instruction")
+             sys.exit()
     return True
 
 
@@ -286,10 +289,10 @@ for inst in sys.stdin:
     data.append(words)
 
 
-# if hlt_only_in_last(data):
-#     pass
-# if hlt_last(data):
-#     pass
+if hlt_only_in_last(data):
+    pass
+if hlt_last(data):
+    pass
 if valid(data):
     pass
 if is_valid_syntax(data):
@@ -339,7 +342,7 @@ for i in data:
         binary.append(bin)
         
     #type I
-    elif i[0]== "addi" or "sltiu" or "jalr" or "lw":
+    elif i[0]== "addi":
         binary.append(decimal_to_binary_12(i[3])+Registers[i[2]]+"010"+Registers[i[1]]+opcode[i[0]])
 
     elif i[0]== "sltiu":
@@ -360,7 +363,7 @@ for i in data:
         imm2 = imm[0:7]
         binary.append( imm2 + Registers[i[1]] + Registers[i[3]] + "010" + imm1 + opcode[i[0]])
     #type B
-    elif i[0]== "beq":
+    elif i[0]== "beq" and not(i[1]=="zero" and i[2]=="zero" and i[3]=="0"):
         rs1 = Registers[i[1]]
         rs2 = Registers[i[2]]
         imm_binary = decimal_to_binary_12(int(i[3]))
@@ -418,9 +421,10 @@ for i in data:
         binary.append(bin)
         
     elif i[0]=="jal":
-        bin=decimal_to_binary_20(i[2])[0]+decimal_to_binary_20(i[2])[10:20]+decimal_to_binary_21(i[2])[9]+decimal_to_binary_21(i[2])[1:9]+Registers[i[1]]+opcode[i[0]]
+        bin=decimal_to_binary_20(i[2])[0]+decimal_to_binary_20(i[2])[10:20]+decimal_to_binary_20(i[2])[9]+decimal_to_binary_20(i[2])[1:9]+Registers[i[1]]+opcode[i[0]]
         binary.append(bin)
 
 
 for i in binary:
     print(i)
+
