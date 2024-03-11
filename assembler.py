@@ -77,6 +77,14 @@ def empty(inst):
 def decimal_to_binary_12(decimal):
     binary_str = bin(int(decimal))[2:]
     return binary_str.zfill(12)
+
+def decimal_to_binary_32(decimal):
+    binary_str = bin(int(decimal))[2:]
+    return binary_str.zfill(32)
+
+def decimal_to_binary_21(decimal):
+    binary_str = bin(int(decimal))[2:]
+    return binary_str.zfill(21)
     
 def hlt_last(data):
     length=len(data)-1
