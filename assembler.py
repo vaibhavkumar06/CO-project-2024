@@ -224,6 +224,21 @@ for inst in sys.stdin:
         break  
     if comment_empty(inst):
         continue
+    if "(" in inst:
+        words=[]
+        current_component = ""
+        for char in inst:
+            if char == ' ' or char == ',' or char == '(' or char == ')':
+                if current_component:
+                    words.append(current_component)
+                    current_component = ""
+                if char != ' ':
+                    words.append(char)
+            else:
+                current_component += char
+        if current_component:
+            words.append(current_component)
+        data.append(words)
     else:
         words = inst.split()
         comma=words[1].split(",")
