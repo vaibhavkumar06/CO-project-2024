@@ -328,7 +328,7 @@ for i in data:
         binary.append(decimal_to_binary_12(i[3])+Registers[i[2]]+"011"+Registers[i[1]]+opcode[i[0]])
 
     elif i[0]== "lw":
-        binary.append(decimal_to_binary_12(i[3])+Registers[i[2]]+"000"+Registers[i[1]]+opcode[i[0]])
+        binary.append(decimal_to_binary_12(i[2])+Registers[i[3]]+"000"+Registers[i[1]]+opcode[i[0]])
 
     
 
