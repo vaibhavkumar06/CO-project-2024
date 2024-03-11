@@ -298,7 +298,7 @@ for i in data:
         binary.append(imm1+rs2+rs1+"110"+imm2+opcode[i[0]])
  
 
-   elif i[0]== "bgeu":
+    elif i[0]== "bgeu":
         rs1 = Registers[i[1]]
         rs2 = Registers[i[2]]
         imm_binary = decimal_to_binary_12(int(i[3]))
