@@ -88,7 +88,7 @@ def hlt_last(data):
 
 def hlt_only_in_last(data):
     for i in range(len(data)-1):
-        if data[i][0]=="beq":
+        if data[i][3]=="0x00000000":
             print("ERROR:  at inst no. ",i+1, " can't execute after hlt, hlt instruction present in a inst other than the last one")
             sys.exit()
     return True  
