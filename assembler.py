@@ -131,7 +131,7 @@ def is_valid_syntax(data):
                 sys.exit()
 
         #I type
-        if instruction in ["lw", "addi", "sltiu", "jalr"]:
+        elif instruction in ["lw", "addi", "sltiu", "jalr"]:
             if len(words) == 4:
                 if words[1] not in Registers:
                     print("Syntax ERROR:  at inst no. ", i+1, ""  + word[1]+" is not a valid register name")
@@ -141,15 +141,18 @@ def is_valid_syntax(data):
                         print("Syntax ERROR:  at inst no. ", i+1, ""  + word[2]+" is not a valid register name")
                         sys.exit()
                     if not words[3].isdigit():
-                        print("Syntax ERROR: at inst no. ", i+1, "" + word[2]+" is not a valid register name")
+                        print("Syntax ERROR: at inst no. ", i+1, "" + word[2]+" is not a valid number")
                         sys.exit()     
                 if instruction == "lw":
                     if not words[2].isdigit():
-                        print("Syntax ERROR: at inst no. ", i+1, "" + word[2]+" is not a valid register name")
+                        print("Syntax ERROR: at inst no. ", i+1, "" + word[2]+" is not a valid number")
                         sys.exit()
                     if word[3] not in Registers:
                         print("Syntax ERROR:  at inst no. ", i+1, ""  + word[3]+" is not a valid register name")
                         sys.exit()
+            else:
+                print("Syntax ERROR: at inst no.",i+1, +   instruction + " supports three operands, " + str(len(words)-1) + " were given")
+                sys.exit()
 
 
 
