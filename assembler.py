@@ -1,6 +1,8 @@
 import sys
 import keyword
 
+#opcode and register defining
+
 opcode={
     "add":"0110011",
     "sub":"0110011",
@@ -60,20 +62,8 @@ Registers={"zero":"00000",
            "t5":"11110",
            "t6":"11111"}
 
+#conversions
 
-
-
-
-def comment_empty(inst):
-    if inst.strip() == "" or inst.strip()[0] == "#":
-        return True
-    return False
-    
-def empty(inst):
-    if not inst.strip():
-        return True
-    return False
-    
 def decimal_to_binary_12(decimal):
     if decimal >= 0:
         binary_str = bin(decimal)[2:].zfill(12)
@@ -95,7 +85,18 @@ def decimal_to_binary_20(decimal):
         binary_str = bin(2**20 + decimal)[2:]
     return binary_str[-20:]
 
+#error checking
+
+def comment_empty(inst):
+    if inst.strip() == "" or inst.strip()[0] == "#":
+        return True
+    return False
     
+def empty(inst):
+    if not inst.strip():
+        return True
+    return False
+
 def hlt_last(data):
     length=len(data)-1
     if data[length][0]=="beq" and data[length][1]=="zero" and data[length][2]=="zero" and data[length][3]=="0":
@@ -130,12 +131,17 @@ def is_valid_syntax(data):
             words = data[i]
         instruction = words[0]
         
+        # Check if instruction exists in opcode dictionary
+        if instruction not in opcode.keys():
+            print("Syntax ERROR: at inst no.", i+1, instruction, "is not a valid instruction")
+            sys.exit()
+
         # R type 
-        if instruction in ["add", "sub", "sll", "slt", "or", "and" , "srl" , "xor" , "sltu"]:
+        if instruction in ["add", "sub", "sll", "slt", "or", "and", "srl", "xor", "sltu"]:
             if len(words) == 4:
                 for word in words[1:]:
                     if word not in Registers:
-                        print("Syntax ERROR: at inst no. ", i+1, word + " is not a valid register name")
+                        print("Syntax ERROR: at inst no.", i+1, word + " is not a valid register name")
                         sys.exit()
             else:
                 print("Syntax ERROR: at inst no.", i+1, instruction + " supports three operands, " + str(len(words)-1) + " were given")
@@ -145,21 +151,21 @@ def is_valid_syntax(data):
         if instruction in ["lw", "addi", "sltiu", "jalr"]:
             if len(words) == 4:
                 if words[1] not in Registers:
-                    print("Syntax ERROR: at inst no. ", i+1, words[1] + " is not a valid register name")
+                    print("Syntax ERROR: at inst no.", i+1, words[1] + " is not a valid register name")
                     sys.exit()
                 if instruction == "addi" or instruction == "sltiu" or instruction == "jalr":
                     if words[2] not in Registers:
-                        print("Syntax ERROR: at inst no. ", i+1, words[2] + " is not a valid register name")
+                        print("Syntax ERROR: at inst no.", i+1, words[2] + " is not a valid register name")
                         sys.exit()
                     if not words[3].isdigit():
-                        print("Syntax ERROR: at inst no. ", i+1, words[3] + " is not a valid digit")
-                        sys.exit()     
+                        print("Syntax ERROR: at inst no.", i+1, words[3] + " is not a valid digit")
+                        sys.exit()
                 if instruction == "lw":
                     if not words[2].isdigit():
-                        print("Syntax ERROR: at inst no. ", i+1, words[2] + " is not a valid digit")
+                        print("Syntax ERROR: at inst no.", i+1, words[2] + " is not a valid digit")
                         sys.exit()
                     if words[3] not in Registers:
-                        print("Syntax ERROR: at inst no. ", i+1, words[3] + " is not a valid register name")
+                        print("Syntax ERROR: at inst no.", i+1, words[3] + " is not a valid register name")
                         sys.exit()
             else:
                 print("Syntax ERROR: at inst no.", i+1, instruction + " supports three operands, " + str(len(words)-1) + " were given")
@@ -169,13 +175,13 @@ def is_valid_syntax(data):
         if instruction == "sw":
             if len(words) == 4:
                 if words[1] not in Registers:
-                    print("Syntax ERROR: at inst no. ", i+1, words[1] + " is not a valid register name")
+                    print("Syntax ERROR: at inst no.", i+1, words[1] + " is not a valid register name")
                     sys.exit()
                 if not words[2].isdigit():
-                    print("Syntax ERROR: at inst no. ", i+1, words[2] + " is not a digit")
+                    print("Syntax ERROR: at inst no.", i+1, words[2] + " is not a digit")
                     sys.exit()
                 if words[3] not in Registers:
-                    print("Syntax ERROR: at inst no. ", i+1, words[3] + " is not a valid register name")
+                    print("Syntax ERROR: at inst no.", i+1, words[3] + " is not a valid register name")
                     sys.exit()
             else:
                 print("Syntax ERROR: at inst no.", i+1, instruction + " supports three operands, " + str(len(words)-1) + " were given")
@@ -185,13 +191,13 @@ def is_valid_syntax(data):
         if instruction in ["beq", "bne", "blt", "bge", "bltu", "bgeu"]:
             if len(words) == 4:
                 if words[1] not in Registers:
-                    print("Syntax ERROR: at inst no. ", i+1, words[1] + " is not a valid register name")
+                    print("Syntax ERROR: at inst no.", i+1, words[1] + " is not a valid register name")
                     sys.exit()
                 if words[2] not in Registers:
-                    print("Syntax ERROR: at inst no. ", i+1, words[2] + " is not a valid register name")
+                    print("Syntax ERROR: at inst no.", i+1, words[2] + " is not a valid register name")
                     sys.exit()
                 if not words[3].isdigit():
-                    print("Syntax ERROR: at inst no. ", i+1, words[3] + " is not a valid digit")
+                    print("Syntax ERROR: at inst no.", i+1, words[3] + " is not a valid digit")
                     sys.exit()
             else:
                 print("Syntax ERROR: at inst no.", i+1, instruction + " supports three operands, " + str(len(words)-1) + " were given")
@@ -201,10 +207,10 @@ def is_valid_syntax(data):
         if instruction in ["lui", "auipc"]:
             if len(words) == 3:
                 if words[1] not in Registers:
-                    print("Syntax ERROR: at inst no. ", i+1, words[1] + " is not a valid register name")
+                    print("Syntax ERROR: at inst no.", i+1, words[1] + " is not a valid register name")
                     sys.exit()
                 if not words[2].isdigit():
-                    print("Syntax ERROR: at inst no. ", i+1, words[2] + " is not a valid digit")
+                    print("Syntax ERROR: at inst no.", i+1, words[2] + " is not a valid digit")
                     sys.exit()
             else:
                 print("Syntax ERROR: at inst no.", i+1, instruction + " supports three operands, " + str(len(words)-1) + " were given")
@@ -214,25 +220,26 @@ def is_valid_syntax(data):
         if instruction == "jal":
             if len(words) == 3:
                 if words[1] not in Registers:
-                    print("Syntax ERROR: at inst no. ", i+1, words[1] + " is not a valid register name")
+                    print("Syntax ERROR: at inst no.", i+1, words[1] + " is not a valid register name")
                     sys.exit()
                 if not words[2].isdigit():
-                    print("Syntax ERROR: at inst no. ", i+1, words[2] + " is not a valid digit")
-                    sys.exit()  
+                    print("Syntax ERROR: at inst no.", i+1, words[2] + " is not a valid digit")
+                    sys.exit()
             else:
                 print("Syntax ERROR: at inst no.", i+1, instruction + " supports three operands, " + str(len(words)-1) + " were given")
                 sys.exit()
 
-
-        elif words[i][0]=="beq" and words[i][1]=="zero" and words[i][2]=="zero" and words[i][3]=="0": 
+        elif instruction == "beq" and words[1] == "zero" and words[2] == "zero" and words[3] == "0": 
             continue         
-        elif instruction[-1]==":":
+        elif instruction[-1] == ":":
             continue
-        else:
-            print("Syntax ERROR:  at inst no. ",i+1, "Invalid instruction! ",words[0],"is not an instruction")
-            sys.exit()
+        # else:
+        #     print("Syntax ERROR: at inst no.", i+1, "Invalid instruction! ", words[0], "is not an instruction")
+        #     sys.exit()
     return True
 
+
+#taking input
 
 data = []
 for inst in sys.stdin:
@@ -241,31 +248,41 @@ for inst in sys.stdin:
         break  
     if comment_empty(inst):
         continue
-    if "(" in inst:
-        words=[]
-        current_component = ""
-        for char in inst:
-            if char == ' ' or char == ',' or char == '(' or char == ')':
+    words = []
+    current_component = ""
+    in_parentheses = False
+    for char in inst:
+        if char == ' ':
+            if not in_parentheses:
                 if current_component:
                     words.append(current_component)
                     current_component = ""
-                if char != ' ':
-                    words.append(char)
             else:
                 current_component += char
-        if current_component:
-            words.append(current_component)
-        data.append(words)
-    else:
-        words = inst.split()
-        comma=words[1].split(",")
-        words=[words[0]]+comma
-        data.append(words)
+        elif char == ',':
+            if not in_parentheses:
+                if current_component:
+                    words.append(current_component)
+                    current_component = ""
+            else:
+                current_component += char
+        elif char == '(':
+            in_parentheses = True
+            current_component += char
+        elif char == ')':
+            in_parentheses = False
+            current_component += char
+        else:
+            current_component += char
+    if current_component:
+        words.append(current_component)
+    data.append(words)
 
-if hlt_only_in_last(data):
-    pass
-if hlt_last(data):
-    pass
+
+# if hlt_only_in_last(data):
+#     pass
+# if hlt_last(data):
+#     pass
 if valid(data):
     pass
 if is_valid_syntax(data):
