@@ -123,45 +123,104 @@ def valid(data):
     return True
 
 def is_valid_syntax(data):
-    #R type
     for i in range(len(data)):
-        if data[i][0][-1]==":":
-            words=data[i][1:]
+        if data[i][0][-1] == ":":
+            words = data[i][1:]
         else:
-            words=data[i]
-        instruction= words[0]
+            words = data[i]
+        instruction = words[0]
+        
+        # R type 
         if instruction in ["add", "sub", "sll", "slt", "or", "and" , "srl" , "xor" , "sltu"]:
             if len(words) == 4:
                 for word in words[1:]:
                     if word not in Registers:
-                        print("Syntax ERROR:  at inst no. ", i+1, ""  + word+" is not a valid register name")
+                        print("Syntax ERROR: at inst no. ", i+1, word + " is not a valid register name")
                         sys.exit()
             else:
-                print("Syntax ERROR: at inst no.",i+1, +   instruction + " supports three operands, " + str(len(words)-1) + " were given")
+                print("Syntax ERROR: at inst no.", i+1, instruction + " supports three operands, " + str(len(words)-1) + " were given")
                 sys.exit()
-
-        #I type
-        elif instruction in ["lw", "addi", "sltiu", "jalr"]:
+        
+        # I type
+        if instruction in ["lw", "addi", "sltiu", "jalr"]:
             if len(words) == 4:
                 if words[1] not in Registers:
-                    print("Syntax ERROR:  at inst no. ", i+1, ""  + word[1]+" is not a valid register name")
+                    print("Syntax ERROR: at inst no. ", i+1, words[1] + " is not a valid register name")
                     sys.exit()
-                if instruction == "addi" or "sltiu" or "jalr":
+                if instruction == "addi" or instruction == "sltiu" or instruction == "jalr":
                     if words[2] not in Registers:
-                        print("Syntax ERROR:  at inst no. ", i+1, ""  + word[2]+" is not a valid register name")
+                        print("Syntax ERROR: at inst no. ", i+1, words[2] + " is not a valid register name")
                         sys.exit()
                     if not words[3].isdigit():
-                        print("Syntax ERROR: at inst no. ", i+1, "" + word[2]+" is not a valid number")
+                        print("Syntax ERROR: at inst no. ", i+1, words[3] + " is not a valid digit")
                         sys.exit()     
                 if instruction == "lw":
                     if not words[2].isdigit():
-                        print("Syntax ERROR: at inst no. ", i+1, "" + word[2]+" is not a valid number")
+                        print("Syntax ERROR: at inst no. ", i+1, words[2] + " is not a valid digit")
                         sys.exit()
-                    if word[3] not in Registers:
-                        print("Syntax ERROR:  at inst no. ", i+1, ""  + word[3]+" is not a valid register name")
+                    if words[3] not in Registers:
+                        print("Syntax ERROR: at inst no. ", i+1, words[3] + " is not a valid register name")
                         sys.exit()
             else:
-                print("Syntax ERROR: at inst no.",i+1, +   instruction + " supports three operands, " + str(len(words)-1) + " were given")
+                print("Syntax ERROR: at inst no.", i+1, instruction + " supports three operands, " + str(len(words)-1) + " were given")
+                sys.exit()
+        
+        # S type
+        if instruction == "sw":
+            if len(words) == 4:
+                if words[1] not in Registers:
+                    print("Syntax ERROR: at inst no. ", i+1, words[1] + " is not a valid register name")
+                    sys.exit()
+                if not words[2].isdigit():
+                    print("Syntax ERROR: at inst no. ", i+1, words[2] + " is not a digit")
+                    sys.exit()
+                if words[3] not in Registers:
+                    print("Syntax ERROR: at inst no. ", i+1, words[3] + " is not a valid register name")
+                    sys.exit()
+            else:
+                print("Syntax ERROR: at inst no.", i+1, instruction + " supports three operands, " + str(len(words)-1) + " were given")
+                sys.exit()
+        
+        # B type
+        if instruction in ["beq", "bne", "blt", "bge", "bltu", "bgeu"]:
+            if len(words) == 4:
+                if words[1] not in Registers:
+                    print("Syntax ERROR: at inst no. ", i+1, words[1] + " is not a valid register name")
+                    sys.exit()
+                if words[2] not in Registers:
+                    print("Syntax ERROR: at inst no. ", i+1, words[2] + " is not a valid register name")
+                    sys.exit()
+                if not words[3].isdigit():
+                    print("Syntax ERROR: at inst no. ", i+1, words[3] + " is not a valid digit")
+                    sys.exit()
+            else:
+                print("Syntax ERROR: at inst no.", i+1, instruction + " supports three operands, " + str(len(words)-1) + " were given")
+                sys.exit()
+        
+        # U type
+        if instruction in ["lui", "auipc"]:
+            if len(words) == 3:
+                if words[1] not in Registers:
+                    print("Syntax ERROR: at inst no. ", i+1, words[1] + " is not a valid register name")
+                    sys.exit()
+                if not words[2].isdigit():
+                    print("Syntax ERROR: at inst no. ", i+1, words[2] + " is not a valid digit")
+                    sys.exit()
+            else:
+                print("Syntax ERROR: at inst no.", i+1, instruction + " supports three operands, " + str(len(words)-1) + " were given")
+                sys.exit()
+        
+        # J type
+        if instruction == "jal":
+            if len(words) == 3:
+                if words[1] not in Registers:
+                    print("Syntax ERROR: at inst no. ", i+1, words[1] + " is not a valid register name")
+                    sys.exit()
+                if not words[2].isdigit():
+                    print("Syntax ERROR: at inst no. ", i+1, words[2] + " is not a valid digit")
+                    sys.exit()  
+            else:
+                print("Syntax ERROR: at inst no.", i+1, instruction + " supports three operands, " + str(len(words)-1) + " were given")
                 sys.exit()
 
 
