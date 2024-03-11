@@ -87,6 +87,13 @@ def decimal_to_binary_20(decimal):
 
 #error checking
 
+def is_digit(s):
+    try:
+        float(s)  # Try converting the input to a float
+        return True
+    except ValueError:
+        return False
+
 def comment_empty(inst):
     if inst.strip() == "" or inst.strip()[0] == "#":
         return True
@@ -157,11 +164,11 @@ def is_valid_syntax(data):
                     if words[2] not in Registers:
                         print("Syntax ERROR: at inst no.", i+1, words[2] + " is not a valid register name")
                         sys.exit()
-                    if not words[3].isdigit():
+                    if not is_digit(words[3]):
                         print("Syntax ERROR: at inst no.", i+1, words[3] + " is not a valid digit")
                         sys.exit()
                 if instruction == "lw":
-                    if not words[2].isdigit():
+                    if not is_digit(words[2]):
                         print("Syntax ERROR: at inst no.", i+1, words[2] + " is not a valid digit")
                         sys.exit()
                     if words[3] not in Registers:
@@ -177,7 +184,7 @@ def is_valid_syntax(data):
                 if words[1] not in Registers:
                     print("Syntax ERROR: at inst no.", i+1, words[1] + " is not a valid register name")
                     sys.exit()
-                if not words[2].isdigit():
+                if not is_digit(words[2]):
                     print("Syntax ERROR: at inst no.", i+1, words[2] + " is not a digit")
                     sys.exit()
                 if words[3] not in Registers:
@@ -196,7 +203,7 @@ def is_valid_syntax(data):
                 if words[2] not in Registers:
                     print("Syntax ERROR: at inst no.", i+1, words[2] + " is not a valid register name")
                     sys.exit()
-                if not words[3].isdigit():
+                if not is_digit(words[3]):
                     print("Syntax ERROR: at inst no.", i+1, words[3] + " is not a valid digit")
                     sys.exit()
             else:
@@ -209,7 +216,7 @@ def is_valid_syntax(data):
                 if words[1] not in Registers:
                     print("Syntax ERROR: at inst no.", i+1, words[1] + " is not a valid register name")
                     sys.exit()
-                if not words[2].isdigit():
+                if not is_digit(words[2]):
                     print("Syntax ERROR: at inst no.", i+1, words[2] + " is not a valid digit")
                     sys.exit()
             else:
@@ -222,7 +229,7 @@ def is_valid_syntax(data):
                 if words[1] not in Registers:
                     print("Syntax ERROR: at inst no.", i+1, words[1] + " is not a valid register name")
                     sys.exit()
-                if not words[2].isdigit():
+                if not is_digit(words[2]):
                     print("Syntax ERROR: at inst no.", i+1, words[2] + " is not a valid digit")
                     sys.exit()
             else:
