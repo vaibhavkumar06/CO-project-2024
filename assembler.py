@@ -189,6 +189,8 @@ for inst in sys.stdin:
         continue
     else:
         words = inst.split()
+        comma=words[1].split(",")
+        words=words[0]+comma
         data.append(words)
 binary=[]  
 for i in range(len(data)):
