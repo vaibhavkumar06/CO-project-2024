@@ -252,7 +252,56 @@ for i in data:
 
     #type S
     elif i[0]=="sw":
-    imm = decimal_to_binary_12 (i[2])
-    imm1 = imm[7:12]
-    imm2 = imm[0:7]
-    binary.append( imm2 + Registers[i[1]] + Registers[i[3]] + "010" + imm1 + opcode[i[0])
+        imm = decimal_to_binary_12 (i[2])
+        imm1 = imm[7:12]
+        imm2 = imm[0:7]
+        binary.append( imm2 + Registers[i[1]] + Registers[i[3]] + "010" + imm1 + opcode[i[0])
+
+    elif i[0]== "beq":
+        rs1 = Registers[i[1]]
+        rs2 = Registers[i[2]]
+        imm_binary = decimal_to_binary_12(int(i[3]))
+        imm1 = imm_binary[0]+imm_binary[2:8]
+        imm2 = imm_binary[8:12]+imm_binary[1]
+        binary.append(imm1+rs2+rs1+"000"+imm2+opcode[i[0]])
+
+    elif i[0]== "bne":
+        rs1 = Registers[i[1]]
+        rs2 = Registers[i[2]]
+        imm_binary = decimal_to_binary_12(int(i[3]))
+        imm1 = imm_binary[0]+imm_binary[2:8]
+        imm2 = imm_binary[8:12]+imm_binary[1]
+        binary.append(imm1+rs2+rs1+"001"+imm2+opcode[i[0]])
+
+    elif i[0]== "blt":
+        rs1 = Registers[i[1]]
+        rs2 = Registers[i[2]]
+        imm_binary = decimal_to_binary_12(int(i[3]))
+        imm1 = imm_binary[0]+imm_binary[2:8]
+        imm2 = imm_binary[8:12]+imm_binary[1]
+        binary.append(imm1+rs2+rs1+"100"+imm2+opcode[i[0]])
+
+    elif i[0]== "bge":
+        rs1 = Registers[i[1]]
+        rs2 = Registers[i[2]]
+        imm_binary = decimal_to_binary_12(int(i[3]))
+        imm1 = imm_binary[0]+imm_binary[2:8]
+        imm2 = imm_binary[8:12]+imm_binary[1]
+        binary.append(imm1+rs2+rs1+"101"+imm2+opcode[i[0]])
+
+    elif i[0]== "bltu":
+        rs1 = Registers[i[1]]
+        rs2 = Registers[i[2]]
+        imm_binary = decimal_to_binary_12(int(i[3]))
+        imm1 = imm_binary[0]+imm_binary[2:8]
+        imm2 = imm_binary[8:12]+imm_binary[1]
+        binary.append(imm1+rs2+rs1+"110"+imm2+opcode[i[0]])
+ 
+
+   elif i[0]== "bgeu":
+        rs1 = Registers[i[1]]
+        rs2 = Registers[i[2]]
+        imm_binary = decimal_to_binary_12(int(i[3]))
+        imm1 = imm_binary[0]+imm_binary[2:8]
+        imm2 = imm_binary[8:12]+imm_binary[1]
+        binary.append(imm1+rs2+rs1+"111"+imm2+opcode[i[0]])
