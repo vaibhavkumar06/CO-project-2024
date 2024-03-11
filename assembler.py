@@ -82,9 +82,9 @@ def decimal_to_binary_32(decimal):
     binary_str = bin(int(decimal))[2:]
     return binary_str.zfill(32)
 
-def decimal_to_binary_21(decimal):
+def decimal_to_binary_201(decimal):
     binary_str = bin(int(decimal))[2:]
-    return binary_str.zfill(21)
+    return binary_str.zfill(20)
     
 def hlt_last(data):
     length=len(data)-1
@@ -324,5 +324,5 @@ for i in data:
         binary.append(bin)
         
     elif i[0]=="jal":
-        bin=decimal_to_binary_21(i[2])[0]+decimal_to_binary_21(i[2])[10:20]+decimal_to_binary_21(i[2])[9]+decimal_to_binary_21(i[2])[1:9]+Registers[i[1]]+opcode[i[0]]
+        bin=decimal_to_binary_20(i[2])[0]+decimal_to_binary_20(i[2])[10:20]+decimal_to_binary_21(i[2])[9]+decimal_to_binary_21(i[2])[1:9]+Registers[i[1]]+opcode[i[0]]
         binary.append(bin)
