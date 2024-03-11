@@ -224,16 +224,7 @@ def is_valid_syntax(data):
                 sys.exit()
 
 
-
-
-
-
-
-
-
-
-
-        elif elif words[i][0]=="beq" and words[i][1]=="zero" and words[i][2]=="zero" and words[i][3]=="0": 
+        elif words[i][0]=="beq" and words[i][1]=="zero" and words[i][2]=="zero" and words[i][3]=="0": 
             continue         
         elif instruction[-1]==":":
             continue
@@ -241,39 +232,6 @@ def is_valid_syntax(data):
             print("Syntax ERROR:  at inst no. ",i+1, "Invalid instruction! ",words[0],"is not an instruction")
             sys.exit()
     return True
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 data = []
