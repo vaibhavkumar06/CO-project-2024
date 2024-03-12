@@ -262,7 +262,7 @@ for inst in sys.stdin:
     if comment_empty(inst):
         continue
     words = []
-    pattern = r'(\w+[:]|[\w]+|\d+)'
+    pattern = r'(\w+[:]|-?\d+|\w+|-|:)'
     words = re.findall(pattern, inst)
     data.append(words)
 
