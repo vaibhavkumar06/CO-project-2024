@@ -389,16 +389,16 @@ for i in data:
         binary.append(imm1+rs2+rs1+"111"+imm2+opcode[i[0]])
         
     elif i[0]=="lui":
-        bin=decimal_to_binary_32(i[2])[0:20]+Registers[i[1]]+opcode[i[0]]
-        binary.append(bin)
+        bina=decimal_to_binary_32(i[2])[0:20]+Registers[i[1]]+opcode[i[0]]
+        binary.append(bina)
         
     elif i[0]=="auipc":
-        bin=decimal_to_binary_32(i[2])[0:20]+Registers[i[1]]+opcode[i[0]]
-        binary.append(bin)
+        bina=decimal_to_binary_32(i[2])[0:20]+Registers[i[1]]+opcode[i[0]]
+        binary.append(bina)
         
     elif i[0]=="jal":
-        bin=decimal_to_binary_20(i[2])[0]+decimal_to_binary_20(i[2])[10:20]+decimal_to_binary_20(i[2])[9]+decimal_to_binary_20(i[2])[1:9]+Registers[i[1]]+opcode[i[0]]
-        binary.append(bin)
+        bina=decimal_to_binary_20(i[2])[0]+decimal_to_binary_20(i[2])[10:20]+decimal_to_binary_20(i[2])[9]+decimal_to_binary_20(i[2])[1:9]+Registers[i[1]]+opcode[i[0]]
+        binary.append(bina)
 
 
 for i in binary:
