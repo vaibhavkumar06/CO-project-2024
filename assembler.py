@@ -282,40 +282,40 @@ for i in data:
    
     ## R type instructions
     if i[0]=="add":
-        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"000"+Registers[i[1]]+opcode[i[0]]
-        binary.append(bin)
+        bina="0000000"+Registers[i[3]]+Registers[i[2]]+"000"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bina)
     
     elif i[0]=="sub":
-        bin="0100000"+Registers[i[3]]+Registers[i[2]]+"000"+Registers[i[1]]+opcode[i[0]]
-        binary.append(bin)
+        bina="0100000"+Registers[i[3]]+Registers[i[2]]+"000"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bina)
     
     elif i[0]=="sll":
-        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"001"+Registers[i[1]]+opcode[i[0]]
-        binary.append(bin)
+        bina="0000000"+Registers[i[3]]+Registers[i[2]]+"001"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bina)
 
     elif i[0]=="slt":
-        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"010"+Registers[i[1]]+opcode[i[0]]
-        binary.append(bin)
+        bina="0000000"+Registers[i[3]]+Registers[i[2]]+"010"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bina)
 
     elif i[0]=="sltu":
-        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"011"+Registers[i[1]]+opcode[i[0]]
-        binary.append(bin)
+        bina="0000000"+Registers[i[3]]+Registers[i[2]]+"011"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bina)
         
     elif i[0]=="xor":
-        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"100"+Registers[i[1]]+opcode[i[0]]
-        binary.append(bin)
+        bina="0000000"+Registers[i[3]]+Registers[i[2]]+"100"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bina)
 
     elif i[0]=="srl":
-        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"101"+Registers[i[1]]+opcode[i[0]]
-        binary.append(bin)
+        bina="0000000"+Registers[i[3]]+Registers[i[2]]+"101"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bina)
         
     elif i[0]=="or":
-        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"110"+Registers[i[1]]+opcode[i[0]]
-        binary.append(bin)
+        bina="0000000"+Registers[i[3]]+Registers[i[2]]+"110"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bina)
 
     elif i[0]=="and":
-        bin="0000000"+Registers[i[3]]+Registers[i[2]]+"111"+Registers[i[1]]+opcode[i[0]]
-        binary.append(bin)
+        bina="0000000"+Registers[i[3]]+Registers[i[2]]+"111"+Registers[i[1]]+opcode[i[0]]
+        binary.append(bina)
         
     #type I
     elif i[0]== "addi":
@@ -342,7 +342,7 @@ for i in data:
     elif i[0]== "beq" and not(i[1]=="zero" and i[2]=="zero" and i[3]=="0"):
         rs1 = Registers[i[1]]
         rs2 = Registers[i[2]]
-        imm_binary = decimal_to_binary_12(int(i[3]))
+        imm_binary = decimal_to_binary_12(i[3])
         imm1 = imm_binary[0]+imm_binary[2:8]
         imm2 = imm_binary[8:12]+imm_binary[1]
         binary.append(imm1+rs2+rs1+"000"+imm2+opcode[i[0]])
@@ -350,7 +350,7 @@ for i in data:
     elif i[0]== "bne":
         rs1 = Registers[i[1]]
         rs2 = Registers[i[2]]
-        imm_binary = decimal_to_binary_12(int(i[3]))
+        imm_binary = decimal_to_binary_12(i[3])
         imm1 = imm_binary[0]+imm_binary[2:8]
         imm2 = imm_binary[8:12]+imm_binary[1]
         binary.append(imm1+rs2+rs1+"001"+imm2+opcode[i[0]])
@@ -358,7 +358,7 @@ for i in data:
     elif i[0]== "blt":
         rs1 = Registers[i[1]]
         rs2 = Registers[i[2]]
-        imm_binary = decimal_to_binary_12(int(i[3]))
+        imm_binary = decimal_to_binary_12(i[3])
         imm1 = imm_binary[0]+imm_binary[2:8]
         imm2 = imm_binary[8:12]+imm_binary[1]
         binary.append(imm1+rs2+rs1+"100"+imm2+opcode[i[0]])
@@ -366,7 +366,7 @@ for i in data:
     elif i[0]== "bge":
         rs1 = Registers[i[1]]
         rs2 = Registers[i[2]]
-        imm_binary = decimal_to_binary_12(int(i[3]))
+        imm_binary = decimal_to_binary_12(i[3])
         imm1 = imm_binary[0]+imm_binary[2:8]
         imm2 = imm_binary[8:12]+imm_binary[1]
         binary.append(imm1+rs2+rs1+"101"+imm2+opcode[i[0]])
@@ -374,7 +374,7 @@ for i in data:
     elif i[0]== "bltu":
         rs1 = Registers[i[1]]
         rs2 = Registers[i[2]]
-        imm_binary = decimal_to_binary_12(int(i[3]))
+        imm_binary = decimal_to_binary_12(i[3])
         imm1 = imm_binary[0]+imm_binary[2:8]
         imm2 = imm_binary[8:12]+imm_binary[1]
         binary.append(imm1+rs2+rs1+"110"+imm2+opcode[i[0]])
@@ -383,7 +383,7 @@ for i in data:
     elif i[0]== "bgeu":
         rs1 = Registers[i[1]]
         rs2 = Registers[i[2]]
-        imm_binary = decimal_to_binary_12(int(i[3]))
+        imm_binary = decimal_to_binary_12(i[3])
         imm1 = imm_binary[0]+imm_binary[2:8]
         imm2 = imm_binary[8:12]+imm_binary[1]
         binary.append(imm1+rs2+rs1+"111"+imm2+opcode[i[0]])
