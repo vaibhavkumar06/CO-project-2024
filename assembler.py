@@ -110,6 +110,8 @@ def empty(inst):
 
 def hlt_last(data):
     length=len(data)-1
+    if data[length][0][-1] == ":":
+        data[length] = data[length][1:]
     if data[length][0]=="beq" and data[length][1]=="zero" and data[length][2]=="zero" and data[length][3]=="0":
         return True
     else:
