@@ -72,7 +72,15 @@ def decimal_to_binary_12(decimal_str):
     else:
         binary_str = bin(2**12 + decimal)[2:]
     return str(binary_str[-12:])
-
+    
+def decimal_to_binary_13(decimal_str):
+    decimal = int(decimal_str)
+    if decimal >= 0:
+        binary_str = bin(decimal)[2:].zfill(13)
+    else:
+        binary_str = bin(2**13 + decimal)[2:]
+    return str(binary_str[-13:])
+    
 def decimal_to_binary_32(decimal_str):
     decimal = int(decimal_str)
     if decimal >= 0:
@@ -81,13 +89,13 @@ def decimal_to_binary_32(decimal_str):
         binary_str = bin(2**32 + decimal)[2:]
     return str(binary_str[-32:])
 
-def decimal_to_binary_20(decimal_str):
+def decimal_to_binary_21(decimal_str):
     decimal = int(decimal_str)
     if decimal >= 0:
-        binary_str = bin(decimal)[2:].zfill(20)
+        binary_str = bin(decimal)[2:].zfill(21)
     else:
-        binary_str = bin(2**20 + decimal)[2:]
-    return str(binary_str[-20:])
+        binary_str = bin(2**21 + decimal)[2:]
+    return str(binary_str[-21:])
 
 #error checking
 
@@ -344,7 +352,7 @@ for i in data:
     elif i[0]== "beq" and not(i[1]=="zero" and i[2]=="zero" and i[3]=="0"):
         rs1 = Registers[i[1]]
         rs2 = Registers[i[2]]
-        imm_binary = decimal_to_binary_12(i[3])
+        imm_binary = decimal_to_binary_13(i[3])
         imm1 = imm_binary[0]+imm_binary[2:8]
         imm2 = imm_binary[8:12]+imm_binary[1]
         binary.append(imm1+rs2+rs1+"000"+imm2+opcode[i[0]])
@@ -352,7 +360,7 @@ for i in data:
     elif i[0]== "bne":
         rs1 = Registers[i[1]]
         rs2 = Registers[i[2]]
-        imm_binary = decimal_to_binary_12(i[3])
+        imm_binary = decimal_to_binary_13(i[3])
         imm1 = imm_binary[0]+imm_binary[2:8]
         imm2 = imm_binary[8:12]+imm_binary[1]
         binary.append(imm1+rs2+rs1+"001"+imm2+opcode[i[0]])
@@ -360,7 +368,7 @@ for i in data:
     elif i[0]== "blt":
         rs1 = Registers[i[1]]
         rs2 = Registers[i[2]]
-        imm_binary = decimal_to_binary_12(i[3])
+        imm_binary = decimal_to_binary_13(i[3])
         imm1 = imm_binary[0]+imm_binary[2:8]
         imm2 = imm_binary[8:12]+imm_binary[1]
         binary.append(imm1+rs2+rs1+"100"+imm2+opcode[i[0]])
@@ -368,7 +376,7 @@ for i in data:
     elif i[0]== "bge":
         rs1 = Registers[i[1]]
         rs2 = Registers[i[2]]
-        imm_binary = decimal_to_binary_12(i[3])
+        imm_binary = decimal_to_binary_13(i[3])
         imm1 = imm_binary[0]+imm_binary[2:8]
         imm2 = imm_binary[8:12]+imm_binary[1]
         binary.append(imm1+rs2+rs1+"101"+imm2+opcode[i[0]])
@@ -376,7 +384,7 @@ for i in data:
     elif i[0]== "bltu":
         rs1 = Registers[i[1]]
         rs2 = Registers[i[2]]
-        imm_binary = decimal_to_binary_12(i[3])
+        imm_binary = decimal_to_binary_13(i[3])
         imm1 = imm_binary[0]+imm_binary[2:8]
         imm2 = imm_binary[8:12]+imm_binary[1]
         binary.append(imm1+rs2+rs1+"110"+imm2+opcode[i[0]])
@@ -385,7 +393,7 @@ for i in data:
     elif i[0]== "bgeu":
         rs1 = Registers[i[1]]
         rs2 = Registers[i[2]]
-        imm_binary = decimal_to_binary_12(i[3])
+        imm_binary = decimal_to_binary_13(i[3])
         imm1 = imm_binary[0]+imm_binary[2:8]
         imm2 = imm_binary[8:12]+imm_binary[1]
         binary.append(imm1+rs2+rs1+"111"+imm2+opcode[i[0]])
@@ -399,7 +407,7 @@ for i in data:
         binary.append(bina)
         
     elif i[0]=="jal":
-        bina=decimal_to_binary_20(i[2])[0]+decimal_to_binary_20(i[2])[10:20]+decimal_to_binary_20(i[2])[9]+decimal_to_binary_20(i[2])[1:9]+Registers[i[1]]+opcode[i[0]]
+        bina=decimal_to_binary_21(i[2])[0]+decimal_to_binary_21(i[2])[10:20]+decimal_to_binary_21(i[2])[9]+decimal_to_binary_21(i[2])[1:9]+Registers[i[1]]+opcode[i[0]]
         binary.append(bina)
 
 
