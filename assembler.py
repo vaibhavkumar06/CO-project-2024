@@ -413,4 +413,5 @@ for i in data:
 
 for i in binary:
     print(i)
+print("00000000000000000000000001100011")
 
