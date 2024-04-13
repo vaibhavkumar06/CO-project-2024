@@ -75,5 +75,5 @@ for m in input:
 pc=0
 while pc<len(input):
     op=input[pc][0]
-    op=op[0:5]
+    op=op[25:32]
     i=input[pc][0]
