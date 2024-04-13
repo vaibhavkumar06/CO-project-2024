@@ -59,6 +59,14 @@ Registers={"00000":"00000000000000000000000000000000",
            "11101":"00000000000000000000000000000000",
            "11110":"00000000000000000000000000000000",
            "11111":"00000000000000000000000000000000"}
+
+def decimal_to_binary_32(decimal):
+    decimal=int(decimal)
+    return "0b"+bin(decimal)[2:].zfill(16) 
+
+def binary_to_decimal(binary):
+    return int(binary, 2)
+
 mem_address = {}
 for i in range(128):
     bin_str = format(i, '07b')  
@@ -77,3 +85,12 @@ while pc<len(input):
     op=input[pc][0]
     op=op[25:32]
     i=input[pc][0]
+
+    if op=="0110011" and i[17:20]=="000" and i[0:7]=="0000000": #add
+        p=pc
+        reg=i[20:25]
+        reg1=i[12:17]
+        reg2=i[7:12]
+        
+        Registers[reg]=decimal_to_binary_32( binary_to_decimal(Registers[reg1][8:])  +   binary_to_decimal(Registers[reg2][8:])   )
+        pc=pc+1
