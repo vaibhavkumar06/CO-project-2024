@@ -60,3 +60,21 @@ Registers={"zero":"00000",
            "t4":"11101",
            "t5":"11110",
            "t6":"11111"}
+mem_address = {}
+for i in range(128):
+    bin_str = format(i, '07b')  
+    mem_address[bin_str] ="0000000000000000"
+input = []
+for i in sys.stdin:
+    i = i.rstrip() 
+    words = i.split()
+    input.append(words)
+mem_address_pointer=0   
+for m in input:
+    mem_address[decimal_to_binary_7 (mem_address_pointer)]=m[0]
+    mem_address_pointer+=1
+pc=0
+while pc<len(input):
+    op=input[pc][0]
+    op=op[0:5]
+    i=input[pc][0]
