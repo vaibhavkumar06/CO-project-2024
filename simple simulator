@@ -1,6 +1,5 @@
 import sys
 import keyword
-import re
 
 opcode={
     "add":"0110011",
