@@ -68,7 +68,7 @@ def binary_to_decimal(binary):
     return int(binary, 2)
 
 mem_address = {}
-for i in range(128):
+for i in range(32):
     bin_str = format(i, '07b')  
     mem_address[bin_str] ="0000000000000000"
 input = []
