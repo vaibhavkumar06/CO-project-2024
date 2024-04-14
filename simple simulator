@@ -69,7 +69,7 @@ def binary_to_decimal(binary):
 
 mem_address = {}
 for i in range(32):
-    bin_str = format(i, '07b')  
+    bin_str = "0x"+hex(65536+(4*i))[2:].zfill(8) 
     mem_address[bin_str] ="0000000000000000"
 input = []
 for i in sys.stdin:
