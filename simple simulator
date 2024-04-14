@@ -94,3 +94,43 @@ while pc<len(input):
         
         Registers[reg]=decimal_to_binary_32( binary_to_decimal(Registers[reg1][8:])  +   binary_to_decimal(Registers[reg2][8:])   )
         pc=pc+1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+print(decimal_to_binary_32(p),end=" ")
+    for j in Registers.values():
+        print(j,end=" ")
+    print()
+for k in mem_address.values():
+    print(k)
