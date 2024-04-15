@@ -82,7 +82,7 @@ while pc<len(input):
         reg1=i[12:17]
         reg2=i[7:12]
         if i[17:20]=="000" and i[0:7]=="0000000":
-           Registers[reg]=decimal_to_binary_32( binary_to_decimal(Registers[reg1])  +   binary_to_decimal(Registers[reg2])   )
+           Registers[reg]=decimal_to_binary_with_sign_extension( binary_to_decimal(Registers[reg1])  +   binary_to_decimal(Registers[reg2])   )
            pc=pc+4
         elif Registers[0:7]=="0100000":
             if reg1=="00000":
