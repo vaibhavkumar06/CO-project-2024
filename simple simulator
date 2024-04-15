@@ -105,6 +105,10 @@ while pc<len(input):
             if binary_to_decimal(Registers[reg1]) < binary_to_decimal(Registers[reg2]):
                 Registers[reg]=decimal_to_binary_32(1)
 
+        #xor
+        elif i[17:20]=="100":
+           Registers[reg] = Registers[reg1] ^ Registers[reg2]
+
 
 
 
