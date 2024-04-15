@@ -42,6 +42,14 @@ def decimal_to_binary_32(decimal):
 def binary_to_decimal(binary):
     return int(binary, 2)
 
+def twos(binary):
+    if binary[0] == '1':
+        inverted_bits = ''.join('1' if bit == '0' else '0' for bit in binary)
+        binary = bin(int(inverted_bits, 2) + 1)[2:]
+        binary = binary.zfill(len(inverted_bits))
+        return -int(binary, 2)
+    return int(binary, 2)
+
 mem_address = {}
 for i in range(32):
     bin_str = "0x"+hex(65536+(4*i))[2:].zfill(8) 
