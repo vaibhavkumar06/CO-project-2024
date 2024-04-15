@@ -51,10 +51,6 @@ for i in sys.stdin:
     i = i.rstrip() 
     words = i.split()
     input.append(words)
-mem_address_pointer=0   
-for m in input:
-    mem_address[decimal_to_binary_32(mem_address_pointer)]=m[0]
-    mem_address_pointer+=1
 pc=0
 while pc<len(input):
     op=input[pc][0]
