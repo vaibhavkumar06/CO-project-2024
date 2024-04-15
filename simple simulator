@@ -81,9 +81,13 @@ while pc<len(input):
         reg=i[20:25]
         reg1=i[12:17]
         reg2=i[7:12]
+
+        # add
         if i[17:20]=="000" and i[0:7]=="0000000":
            Registers[reg]=decimal_to_binary_with_sign_extension( binary_to_decimal(Registers[reg1])  +   binary_to_decimal(Registers[reg2])   )
            pc=pc+4
+
+        # sub
         elif i[0:7]=="0100000":
             if reg1=="00000":
                 Registers[reg]= decimal_to_binary_with_sign_extension(-1*twos_to_decimal(Registers[reg2]))
@@ -91,12 +95,15 @@ while pc<len(input):
             else:
                 Registers[reg]= decimal_to_binary_32( twos_to_decimal(Registers[reg1] - twos_to_decimal(Registers[reg2] )
                 pc=pc+4
-           #slt
-        elif i[0:7]=="0000000" and i[17:20]=="010":
+        #slt
+        elif i[17:20]=="010":
             if binary_to_decimal(Registers[reg1]) < binary_to_decimal(Registers[reg2]):
                 Registers[reg]=decimal_to_binary_32(1)
-           
 
+        #sltu
+        elif i[17:20]=="011":
+            if binary_to_decimal(Registers[reg1]) < binary_to_decimal(Registers[reg2]):
+                Registers[reg]=decimal_to_binary_32(1)
 
 
 
