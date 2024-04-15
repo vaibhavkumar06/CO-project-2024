@@ -65,6 +65,8 @@ while pc<len(input):
         if i[17:20]=="000" and i[0:7]=="0000000":
            Registers[reg]=decimal_to_binary_32( binary_to_decimal(Registers[reg1])  +   binary_to_decimal(Registers[reg2])   )
            pc=pc+4
+        elif i[17:20]=="010" and i[0:7]=="0000000":
+           Registers[reg]=
 
 
 
