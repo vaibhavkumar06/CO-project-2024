@@ -129,7 +129,7 @@ while pc<len(input):
 
 print(decimal_to_binary_32(p),end=" ")
     for j in Registers.values():
-        print(j,end=" ")
+        print("0b"+j,end=" ")
     print()
 for k in mem_address.values():
     print(k)
