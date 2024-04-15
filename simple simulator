@@ -131,5 +131,6 @@ while pc<len(input):
     for j in Registers.values():
         print("0b"+j,end=" ")
     print()
-for k in mem_address.values():
-    print(k)
+for k in mem_address:
+    print(k,end=":")
+    print(mem_address[k])
