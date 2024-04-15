@@ -62,7 +62,7 @@ Registers={"00000":"00000000000000000000000000000000",
 
 def decimal_to_binary_32(decimal):
     decimal=int(decimal)
-    return "0b"+bin(decimal)[2:].zfill(16) 
+    return "0b"+bin(decimal)[2:].zfill(32) 
 
 def binary_to_decimal(binary):
     return int(binary, 2)
@@ -92,8 +92,8 @@ while pc<len(input):
         reg1=i[12:17]
         reg2=i[7:12]
         
-        Registers[reg]=decimal_to_binary_32( binary_to_decimal(Registers[reg1][8:])  +   binary_to_decimal(Registers[reg2][8:])   )
-        pc=pc+1
+        Registers[reg]=decimal_to_binary_32( binary_to_decimal(Registers[reg1])  +   binary_to_decimal(Registers[reg2])   )
+        pc=pc+4
 
 
 
