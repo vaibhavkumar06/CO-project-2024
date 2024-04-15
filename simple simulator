@@ -109,6 +109,14 @@ while pc<len(input):
         elif i[17:20]=="100":
            Registers[reg] = Registers[reg1] ^ Registers[reg2]
 
+        #or
+        elif i[17:20]=="110":
+            Registers[reg] = Registers[reg1] | Registers[reg2]
+        
+        #and
+        elif i[17:20]=="111":
+            Registers[reg] = Registers[reg1] & Registers[reg2]
+
 
 
 
