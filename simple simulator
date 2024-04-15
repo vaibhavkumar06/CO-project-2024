@@ -37,7 +37,7 @@ Registers={"00000":"00000000000000000000000000000000",
 
 def decimal_to_binary_32(decimal):
     decimal=int(decimal)
-    return "0b"+bin(decimal)[2:].zfill(32) 
+    return bin(decimal)[2:].zfill(32) 
 
 def binary_to_decimal(binary):
     return int(binary, 2)
