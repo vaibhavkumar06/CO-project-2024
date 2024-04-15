@@ -76,6 +76,7 @@ while pc<len(input):
     op=op[25:32]
     i=input[pc][0]
 
+    #R type
     if op=="0110011": 
         p=pc
         reg=i[20:25]
@@ -116,6 +117,51 @@ while pc<len(input):
         #and
         elif i[17:20]=="111":
             Registers[reg] = Registers[reg1] & Registers[reg2]
+
+    #U type
+    # lui
+    elif op == "0110111":
+        p = pc
+        reg = i[20:25]
+        imm = i[0:20]
+        Registers[reg]= p + decimal_to_binary_32(imm)
+
+    # auipc
+    elif op == "0010111":
+        p = pc
+        reg = i[20:25]
+        imm = i[0:20]
+        Registers[reg] = decimal_to_binary_32(imm)
+    
+    #B type
+    elif op == "1100011":
+        reg1=i[12:17]
+        reg2=i[7:12]
+        imm = (i[27:24] + i[20]) + (i[19] + i[16:11]) #here im doing [11:7] + [31:25], bit unsure, so someone check
+        #beq
+        if i[17:20]=="000":
+            if decimal_to_binary_32(reg1)==decimal_to_binary_32(reg2):
+                pc = pc + decimal_to_binary_32(imm)   #not sure if i should update pc directly or use temp variable p, someone check
+        #bne
+        elif i[17:20]=="001":
+            if decimal_to_binary_32(reg1)!=decimal_to_binary_32(reg2):
+                pc = pc + decimal_to_binary_32(imm)
+        #blt
+        elif i[17:20]=="100":
+            if decimal_to_binary_32(reg1)<decimal_to_binary_32(reg2):
+                pc = pc + decimal_to_binary_32(imm)
+        #bge
+        elif i[17:20]=="101":
+            if decimal_to_binary_32(reg1)>=decimal_to_binary_32(reg2):
+                pc = pc + decimal_to_binary_32(imm)
+        #bltu
+        elif i[17:20]=="110":
+            if decimal_to_binary_32(reg1)<decimal_to_binary_32(reg2):
+                pc = pc + decimal_to_binary_32(imm)
+        #bgeu
+        elif i[17:20]=="111":
+            if decimal_to_binary_32(reg1)>=decimal_to_binary_32(reg2):
+                pc = pc + decimal_to_binary_32(imm)
 
 
 
