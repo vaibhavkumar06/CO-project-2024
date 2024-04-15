@@ -42,7 +42,7 @@ def decimal_to_binary_32(decimal):
 def binary_to_decimal(binary):
     return int(binary, 2)
 
-def twos(binary):
+def twos_to_decimal(binary):
     if binary[0] == '1':
         inverted_bits = ''.join('1' if bit == '0' else '0' for bit in binary)
         binary = bin(int(inverted_bits, 2) + 1)[2:]
