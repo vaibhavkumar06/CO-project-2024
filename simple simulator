@@ -50,6 +50,17 @@ def twos_to_decimal(binary):
         return -int(binary, 2)
     return int(binary, 2)
 
+def decimal_to_binary_with_sign_extension(decimal, num_bits=32):
+        if decimal < 0:
+            binary = bin(decimal & int("1"*num_bits, 2))[2:]
+        else:
+            binary = bin(decimal)[2:]
+        if len(binary) < num_bits:
+            binary = "0" * (num_bits - len(binary)) + binary
+        elif len(binary) > num_bits:
+            binary = binary[-num_bits:]
+        return binary
+
 mem_address = {}
 for i in range(32):
     bin_str = "0x"+hex(65536+(4*i))[2:].zfill(8) 
