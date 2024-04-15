@@ -85,7 +85,7 @@ while pc<len(input):
            Registers[reg]=decimal_to_binary_32( binary_to_decimal(Registers[reg1])  +   binary_to_decimal(Registers[reg2])   )
            pc=pc+4
         elif [0:7]=="0100000":
-            if reg1=Registers["00000"]:
+            if reg1=="00000":
                 Registers[reg]= # 2's complement
                 pc=pc+4
             else:
