@@ -86,7 +86,7 @@ while pc<len(input):
            pc=pc+4
         elif [0:7]=="0100000":
             if reg1=="00000":
-                Registers[reg]= decimal_to_binary_with_sign_extension(-1*twos_to_decimal(reg2))
+                Registers[reg]= decimal_to_binary_with_sign_extension(-1*twos_to_decimal(Registers[reg2]))
                 pc=pc+4
             else:
                 Registers[reg]= decimal_to_binary_32( binary_to_decimal(signed(Registers[reg1])) - binary_to_decimal(signed(Registers[reg2])) )
