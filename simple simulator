@@ -154,20 +154,20 @@ while pc<len(input):
         imm = (i[27:24] + i[20]) + (i[19] + i[16:11]) #here im doing [11:7] + [31:25], bit unsure, so someone check
         #beq
         if i[17:20]=="000":
-            if decimal_to_binary_with_sign_extension(reg1)==decimal_to_binary_with_sign_extension(reg2):
+            if twos_to_decimal(reg1)==twos_to_decimal(reg2):
                 pc = pc + twos_to_decimal(imm+"0")   
         #bne
         elif i[17:20]=="001":
-            if decimal_to_binary_with_sign_extension(reg1)!=decimal_to_binary_with_sign_extension(reg2):
-                pc = pc + twos_to_decimal(imm+"0")
+            if twos_to_decimal(reg1)!=twos_to_decimal(reg2):
+                pc = pc + twos_to_decimal(imm+"0")   
         #blt
         elif i[17:20]=="100":
-            if twos_to_decimal(decimal_to_binary_with_sign_extension(reg1)) < twos_to_decimal(decimal_to_binary_with_sign_extension(reg2)):
-                pc = pc + twos_to_decimal(imm+"0")
+            if twos_to_decimal(reg1) < twos_to_decimal(reg2):
+                pc = pc + twos_to_decimal(imm+"0")   
         #bge
         elif i[17:20]=="101":
-            if twos_to_decimal(decimal_to_binary_with_sign_extension(reg1)) >= twos_to_decimal(decimal_to_binary_with_sign_extension(reg2)):
-                pc = pc + twos_to_decimal(imm+"0")
+            if twos_to_decimal(reg1) >= twos_to_decimal(reg2):
+                pc = pc + twos_to_decimal(imm+"0")   
         #bltu
         elif i[17:20]=="110":
             if decimal_to_binary_32(reg1)<decimal_to_binary_32(reg2):
