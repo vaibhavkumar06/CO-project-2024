@@ -137,7 +137,7 @@ while pc<len(input):
         p = pc
         reg = i[20:25]
         imm = i[0:20]
-        Registers[reg]= decimal_to_binary_32(p + binary_to_decimal(imm))
+        Registers[reg]= decimal_to_binary_32(p + binary_to_decimal(imm+"000000000000"))
 
     # auipc
     elif op == "0010111":
