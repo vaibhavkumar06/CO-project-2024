@@ -98,7 +98,7 @@ while pc<len(input):
                 pc=pc+4
         #slt
         elif i[17:20]=="010":
-            if binary_to_decimal(Registers[reg1]) < binary_to_decimal(Registers[reg2]):
+            if twos_to_decimal(Registers[reg1]) < twos_to_decimal(Registers[reg2]):
                 Registers[reg]=decimal_to_binary_32(1)
 
         #sltu
