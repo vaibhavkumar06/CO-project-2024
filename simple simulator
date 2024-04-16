@@ -121,8 +121,8 @@ while pc<len(input):
 
         #xor
         elif i[17:20]=="100":
-           Registers[reg] = str(int(Registers[reg1]) ^ int(Registers[reg2])).zfill(32)
-           pc=pc+4
+            Registers[reg] = str(int(Registers[reg1]) ^ int(Registers[reg2])).zfill(32)
+            pc=pc+4
         #or
         elif i[17:20]=="110":
             Registers[reg] = str(int(Registers[reg1]) | int(Registers[reg2])).zfill(32)
@@ -154,8 +154,8 @@ while pc<len(input):
         imm = (i[27:24] + i[20]) + (i[19] + i[16:11]) #here im doing [11:7] + [31:25], bit unsure, so someone check
         #beq
         if i[17:20]=="000":
-            if decimal_to_binary_32(reg1)==decimal_to_binary_32(reg2):
-                pc = pc + decimal_to_binary_32(imm)   #not sure if i should update pc directly or use temp variable p, someone check
+            if decimal_to_binary_with_sign_extension(reg1)==decimal_to_binary_with_sign_extension(reg2):
+                pc = pc + twos_to_decimal(imm+"0")   
         #bne
         elif i[17:20]=="001":
             if decimal_to_binary_32(reg1)!=decimal_to_binary_32(reg2):
