@@ -94,7 +94,15 @@ while pc<len(input):
                 Registers[reg]= decimal_to_binary_with_sign_extension(-1*twos_to_decimal(Registers[reg2]))
                 pc=pc+4
             else:
-                Registers[reg]= decimal_to_binary_32( twos_to_decimal(Registers[reg1] - twos_to_decimal(Registers[reg2] )
+                if Registers[reg1][0]=="1":
+                      r1=-1*twos_to_decimal(Registers[reg1][1:])
+                else:
+                      r1=twos_to_decimal(Registers[reg1][1:])
+                if Registers[reg2][0]=="1":
+                      r2=-1*twos_to_decimal(Registers[reg2][1:])
+                else:
+                      r2=twos_to_decimal(Registers[reg2][1:])
+                Registers[reg]= ( twos_to_decimal(Registers[reg1] - twos_to_decimal(Registers[reg2] )
                 pc=pc+4
         #slt
         elif i[17:20]=="010":
