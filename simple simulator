@@ -134,12 +134,11 @@ while pc<len(input):
         #sll
         elif i[17:20]=="001":
             r2=Registers[reg2][27:32]
-
-
-
+            Registers[reg] = decimal_to_binary_32(binary_to_decimal(Registers[reg1]) << binary_to_decimal(r2))
         #srl
         elif i[17:20]=="101":
             r2=Registers[reg2][27:32]
+            Registers[reg] = decimal_to_binary_32(binary_to_decimal(Registers[reg1]) >> binary_to_decimal(r2))
 
 
 
