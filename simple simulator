@@ -102,7 +102,10 @@ while pc<len(input):
                       r2=-1*twos_to_decimal(Registers[reg2][1:])
                 else:
                       r2=twos_to_decimal(Registers[reg2][1:])
-                Registers[reg]= ( twos_to_decimal(r1) - twos_to_decimal(r2) )
+                if (twos_to_decimal(r1) - twos_to_decimal(r2))<0:
+                      Registers[reg]="1"+bin(twos_to_decimal(r1) - twos_to_decimal(r2))[2:].zfill(31)
+                else:
+                      Registers[reg]="0"+bin(twos_to_decimal(r1) - twos_to_decimal(r2))[2:].zfill(31)
                 pc=pc+4
         #slt
         elif i[17:20]=="010":
