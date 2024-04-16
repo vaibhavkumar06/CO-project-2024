@@ -163,7 +163,7 @@ while pc<len(input):
     elif op == "1100011":
         reg1=i[12:17]
         reg2=i[7:12]
-        imm = (i[27:24] + i[20]) + (i[19] + i[16:11]) #here im doing [11:7] + [31:25], bit unsure, so someone check
+        imm = i[0] + i[24] + i[1:7] + i[20:24]
         #beq
         if i[17:20]=="000":
             if twos_to_decimal(Registers[reg1])==twos_to_decimal(Registers[reg2]):
