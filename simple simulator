@@ -100,24 +100,26 @@ while pc<len(input):
         elif i[17:20]=="010":
             if twos_to_decimal(Registers[reg1]) < twos_to_decimal(Registers[reg2]):
                 Registers[reg]=decimal_to_binary_32(1)
+            pc=pc+4
 
         #sltu
         elif i[17:20]=="011":
             if twos_to_decimal(Registers[reg1]) < twos_to_decimal(Registers[reg2]):
                 Registers[reg]=decimal_to_binary_32(1)
+            pc=pc+4
 
         #xor
         elif i[17:20]=="100":
            Registers[reg] = str(int(Registers[reg1]) ^ int(Registers[reg2])).zfill(32)
-
+           pc=pc+4
         #or
         elif i[17:20]=="110":
             Registers[reg] = str(int(Registers[reg1]) | int(Registers[reg2])).zfill(32)
-        
+            pc=pc+4
         #and
         elif i[17:20]=="111":
             Registers[reg] = str(int(Registers[reg1]) & int(Registers[reg2])).zfill(32)
-
+            pc=pc+4
     #U type
     # lui
     elif op == "0110111":
