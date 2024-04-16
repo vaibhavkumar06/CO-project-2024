@@ -131,6 +131,18 @@ while pc<len(input):
         elif i[17:20]=="111":
             Registers[reg] = str(int(Registers[reg1]) & int(Registers[reg2])).zfill(32)
             pc=pc+4
+        #sll
+        elif i[17:20]=="001":
+
+
+
+
+        #srl
+        elif i[17:20]=="101":
+
+
+
+
     #U type
     # auipc
     elif op == "0010111":
