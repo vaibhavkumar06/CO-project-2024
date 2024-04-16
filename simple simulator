@@ -170,12 +170,12 @@ while pc<len(input):
                 pc = pc + twos_to_decimal(imm+"0")   
         #bltu
         elif i[17:20]=="110":
-            if decimal_to_binary_32(reg1)<decimal_to_binary_32(reg2):
-                pc = pc + decimal_to_binary_32(imm)
+            if binary_to_decimal(reg1) < binary_to_decimal(reg2):
+                pc = pc + twos_to_decimal(imm+"0")  
         #bgeu
         elif i[17:20]=="111":
-            if decimal_to_binary_32(reg1)>=decimal_to_binary_32(reg2):
-                pc = pc + decimal_to_binary_32(imm)
+            if binary_to_decimal(reg1) >= binary_to_decimal(reg2):
+                pc = pc + twos_to_decimal(imm+"0")  
 
 
 
