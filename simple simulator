@@ -189,6 +189,34 @@ while pc<len(input):
             if binary_to_decimal(Registers[reg1]) >= binary_to_decimal(Registers[reg2]):
                 pc = pc + twos_to_decimal(imm+"0") 
 
+    #I type (jalr instruction is incomplete)
+    elif op=="0000011" or op=="0010011" or op=="1100111 ":
+        p=pc
+        reg=i[20:25]
+        reg1=i[12:17]
+        imm=i[0:12]
+        #lw
+        if i[17:20]=="010":
+            Registers[reg]=mem_address[binary_to_hex(int(Registers[reg1]) + decimal_to_binary_with_sign_extension(imm))]
+        #addi
+        elif i[17:20]=="000":
+            Registers[reg]= int(Registers[reg1]) + decimal_to_binary_with_sign_extension(imm)
+        #sltiu
+        elif i[17:20]=="011":
+            if binary_to_decimal(Registers[reg1]) < binary_to_decimal(imm):
+                Registers[reg] = decimal_to_binary_32(1)
+        #jalr
+        # elif i[17:20]=="000":
+        #     #confusion for what to do, leaving for now
+    
+    #S type
+    elif op=="0100011":
+        reg1=i[12:17]
+        reg2=i[7:12]
+        imm = i[0] + i[24] + i[1:7] + i[20:24]
+        if i[17:20]=="010":
+            Registers[reg2] = mem_address[binary_to_hex(int(Registers[reg1]) + decimal_to_binary_with_sign_extension(imm))]
+
 
 
 
