@@ -133,13 +133,13 @@ while pc<len(input):
             pc=pc+4
         #sll
         elif i[17:20]=="001":
-
+            r2=Registers[reg2][27:32]
 
 
 
         #srl
         elif i[17:20]=="101":
-
+            r2=Registers[reg2][27:32]
 
 
 
