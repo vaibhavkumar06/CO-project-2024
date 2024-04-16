@@ -132,20 +132,21 @@ while pc<len(input):
             Registers[reg] = str(int(Registers[reg1]) & int(Registers[reg2])).zfill(32)
             pc=pc+4
     #U type
-    # lui
-    elif op == "0110111":
+    # auipc
+    elif op == "0010111":
         p = pc
         reg = i[20:25]
         imm = i[0:20]
         Registers[reg]= decimal_to_binary_with_sign_extension(p + binary_to_decimal(imm+"000000000000"))
         pc=pc+4
 
-    # auipc
-    elif op == "0010111":
+    # lui
+    elif op == "0110111":
         p = pc
         reg = i[20:25]
         imm = i[0:20]
         Registers[reg] = imm+"000000000000"
+        pc=pc+4
     
     #B type
     elif op == "1100011":
