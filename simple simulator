@@ -213,7 +213,7 @@ while pc<len(input):
         #jalr
         elif i[17:20]=="000":
             Registers[reg]= decimal_to_binary_32(pc+4)
-            pc = twos_to_decimal(imm) + twos_to_decimal(reg1)
+            pc = binary_to_decimal("0" + decimal_to_binary_with_sign_extension(twos_to_decimal(imm) + twos_to_decimal(reg1))[1:])
     
     #S type
     elif op=="0100011":
