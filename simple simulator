@@ -220,7 +220,7 @@ while pc<len(input):
     #J type
     elif op=="1101111":
         reg=i[20:25]
-        imm=i[0] + i[11:19] + i[10] + i[1:10]
+        imm=i[0] + i[12:20] + i[11] + i[1:11]
         Registers[reg]=pc+4
         pc=pc+twos_to_decimal(imm)+"0"
         # how to make lsb 0 of pc
