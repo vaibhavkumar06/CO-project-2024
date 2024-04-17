@@ -71,10 +71,9 @@ for i in sys.stdin:
     words = i.split()
     input.append(words)
 pc=0
-while pc<len(input):
-    op=input[pc][0]
-    op=op[25:32]
-    i=input[pc][0]
+for j in input:
+    i=j[0]
+    op=i[25:32]
 
     #R type
     if op=="0110011": 
