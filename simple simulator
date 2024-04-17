@@ -167,7 +167,9 @@ for j in input:
         imm = i[0] + i[24] + i[1:7] + i[20:24]
         #beq
         if i[17:20]=="000":
-            if twos_to_decimal(Registers[reg1])==twos_to_decimal(Registers[reg2]):
+            if reg1==reg2:
+                pc = pc+0
+            elif twos_to_decimal(Registers[reg1])==twos_to_decimal(Registers[reg2]):
                 pc = pc + twos_to_decimal(imm+"0") 
             else:
                 pc=pc+4
