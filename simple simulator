@@ -168,27 +168,39 @@ for j in input:
         #beq
         if i[17:20]=="000":
             if twos_to_decimal(Registers[reg1])==twos_to_decimal(Registers[reg2]):
-                pc = pc + twos_to_decimal(imm+"0")   
+                pc = pc + twos_to_decimal(imm+"0") 
+            else:
+                pc=pc+4
         #bne
         elif i[17:20]=="001":
             if twos_to_decimal(Registers[reg1])!=twos_to_decimal(Registers[reg2]):
-                pc = pc + twos_to_decimal(imm+"0")   
+                pc = pc + twos_to_decimal(imm+"0")
+            else:
+                pc=pc+4
         #blt
         elif i[17:20]=="100":
             if twos_to_decimal(Registers[reg1]) < twos_to_decimal(Registers[reg2]):
-                pc = pc + twos_to_decimal(imm+"0")   
+                pc = pc + twos_to_decimal(imm+"0")
+            else:
+                pc=pc+4
         #bge
         elif i[17:20]=="101":
             if twos_to_decimal(Registers[reg1]) >= twos_to_decimal(Registers[reg2]):
-                pc = pc + twos_to_decimal(imm+"0")   
+                pc = pc + twos_to_decimal(imm+"0")
+            else:
+                pc=pc+4
         #bltu
         elif i[17:20]=="110":
             if binary_to_decimal(Registers[reg1]) < binary_to_decimal(Registers[reg2]):
-                pc = pc + twos_to_decimal(imm+"0")  
+                pc = pc + twos_to_decimal(imm+"0")
+            else:
+                pc=pc+4
         #bgeu
         elif i[17:20]=="111":
             if binary_to_decimal(Registers[reg1]) >= binary_to_decimal(Registers[reg2]):
-                pc = pc + twos_to_decimal(imm+"0") 
+                pc = pc + twos_to_decimal(imm+"0")
+            else:
+                pc=pc+4
 
     #I type 
     elif op=="0000011" or op=="0010011" or op=="1100111 ":
