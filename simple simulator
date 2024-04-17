@@ -197,7 +197,7 @@ while pc<len(input):
         imm=i[0:12]
         #lw
         if i[17:20]=="010":
-            Registers[reg]=mem_address[binary_to_hex(twos_to_decimal(Registers[reg1]) + twos_to_decimal(imm))]
+            Registers[reg]=mem_address[hex(twos_to_decimal(Registers[reg1]) + twos_to_decimal(imm))]
         #addi
         elif i[17:20]=="000":
             Registers[reg]= decimal_to_binary_with_sign_extension( twos_to_decimal(Registers[reg1]) + twos_to_decimal(imm) )
