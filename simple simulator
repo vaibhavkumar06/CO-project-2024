@@ -197,7 +197,7 @@ while pc<len(input):
         imm=i[0:12]
         #lw
         if i[17:20]=="010":
-            Registers[reg]=mem_address[hex(twos_to_decimal(Registers[reg1]) + twos_to_decimal(imm))]
+            Registers[reg]=mem_address[hex(twos_to_decimal(Registers[reg1]) + twos_to_decimal(imm)))]
         #addi
         elif i[17:20]=="000":
             Registers[reg]= decimal_to_binary_with_sign_extension( twos_to_decimal(Registers[reg1]) + twos_to_decimal(imm) )
@@ -215,7 +215,7 @@ while pc<len(input):
         reg2=i[7:12]
         imm = i[0] + i[24] + i[1:7] + i[20:24]
         if i[17:20]=="010":
-            Registers[reg2] = mem_address[binary_to_hex(int(Registers[reg1]) + decimal_to_binary_with_sign_extension(imm))]
+            Registers[reg2] = mem_address[hex(twos_to_decimal(Registers[reg1]) + twos_to_decimal(imm)))]
 
     #J type
     elif op=="1101111":
