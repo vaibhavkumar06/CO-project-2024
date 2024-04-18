@@ -168,7 +168,11 @@ for j in input:
         #beq
         if i[17:20]=="000":
             if reg1==reg2:
-                pc = pc+0
+                print("0b"+decimal_to_binary_32(pc),end=" ")
+                for j in Registers.values():
+                    print("0b"+j,end=" ")
+                print()
+                break
             elif twos_to_decimal(Registers[reg1])==twos_to_decimal(Registers[reg2]):
                 pc = pc + twos_to_decimal(imm+"0") 
             else:
